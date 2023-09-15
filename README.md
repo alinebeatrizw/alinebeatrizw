@@ -14,5 +14,7 @@
 
 
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Falinebeatrizw%2Falinebeatrizw&label=Visitantes%3A&labelColor=%23d9e3f0&countColor=%23555555&style=plastic)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2Falinebeatrizw%2Falinebeatrizw)
+<h4 align="center">Visitantes :eyes:</h4>
+
+<p align="center"><img src="https://profile-counter.glitch.me/{alinebeatrizw}/count.svg" alt="alinebeatrizw :: Visitantes" /></p>
 
