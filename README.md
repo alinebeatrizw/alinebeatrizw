@@ -14,5 +14,5 @@
 
 
 
- ![visitor badge](https://visitor-badge.glitch.me/badge?page_id=alinebeatrizw.visitor-badge)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Falinebeatrizw%2Falinebeatrizw&label=Visitantes%3A&labelColor=%23d9e3f0&countColor=%23555555&style=plastic)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2Falinebeatrizw%2Falinebeatrizw)
 
