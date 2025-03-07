@@ -2,7 +2,8 @@
 
  
  
- ![Snake animation](https://github.com/alinebeatrizw/alinebeatrizw/blob/output/github-contribution-grid-snake.svg)
+ ![Snake animation](https://github.com/alinebeatrizw/alinebeatrizw/blob/main/.github/workflows/github-contribution-grid-snake.svg)
+
 
 
 
