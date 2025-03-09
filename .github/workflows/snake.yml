@@ -1,9 +1,14 @@
 name: GitHub Snake Game
 
 on:
+  # Schedule the workflow to run daily at midnight UTC
   schedule:
-    - cron: "0 0 * * *"  # Execute diariamente à meia-noite UTC
+    - cron: "0 0 * * *"
+
+  # Allow manual triggering of the workflow
   workflow_dispatch:
+
+  # Trigger the workflow on pushes to the main branch
   push:
     branches:
       - main
@@ -14,49 +19,30 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      # Passo 1: Checkout do repositório
+      # Step 1: Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Passo 2: Gerar animação da cobra
+      # Step 2: Generate the snake animations
       - name: Generate GitHub Contributions Snake Animations
         uses: Platane/snk@v3
         with:
+          # GitHub username to generate the animation for
           github_user_name: ${{ github.repository_owner }}
+
+          # Define the output files and their configurations
           outputs: |
             dist/github-snake.svg
-            dist/github-snake-dark.svg?palette=github-dark
+            dist/github-snake-dark.svg  # Removido o ?palette=github-dark para gerar o arquivo normalmente
             dist/ocean.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Passo 3: Modificar o SVG sem mover de volta para 'dist'
-      - name: Modify SVG in Temporary Directory and Prepare Output
-        run: |
-          # Criar diretório temporário para modificar o arquivo
-          mkdir -p ./temp
-
-          # Copiar o arquivo SVG gerado para o diretório temporário
-          cp ./dist/github-snake.svg ./temp/github-snake.svg
-
-          # Modificar as cores no arquivo SVG
-          sed -i 's/--cs:purple/--cs:#00ff5a/g' ./temp/github-snake.svg
-          sed -i 's/--c1:#01311f/--c1:#8348c9/g' ./temp/github-snake.svg
-          sed -i 's/--c2:#034525/--c2:#6d19b2/g' ./temp/github-snake.svg
-          sed -i 's/--c3:#0f6d31/--c3:#5a0980/g' ./temp/github-snake.svg
-          sed -i 's/--c4:#00c647/--c4:#35074d/g' ./temp/github-snake.svg
-
-          # Criar um novo diretório de saída para os arquivos modificados
-          mkdir -p ./output
-
-          # Copiar o arquivo modificado para o diretório de saída
-          cp ./temp/github-snake.svg ./output/github-snake.svg
-
-      # Passo 4: Fazer o deploy dos arquivos gerados na branch 'gh-pages'
+      # Step 3: Deploy the generated files to the 'gh-pages' branch
       - name: Deploy to gh-pages Branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output  # Publicar os arquivos modificados no diretório de saída
-          publish_branch: gh-pages  # A branch onde os arquivos serão hospedados
+          publish_dir: ./dist  # Diretório onde os arquivos gerados são salvos
+          publish_branch: gh-pages  # A branch para publicar
           commit_message: "Update snake animation [skip ci]"
