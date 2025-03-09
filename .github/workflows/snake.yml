@@ -30,24 +30,24 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Passo 3: Garantir permissões de escrita e verificar a existência do arquivo SVG
-      - name: Ensure permissions and replace colors in the SVG
+      # Passo 3: Usar um diretório temporário para modificar o SVG
+      - name: Modify SVG in Temporary Directory
         run: |
-          # Garantir que a pasta dist tenha permissões de escrita
-          mkdir -p ./dist  # Certificar-se de que a pasta dist existe
-          chmod -R 777 ./dist  # Alterar permissões para garantir que a pasta e arquivos possam ser escritos
-          
-          # Verificar se o arquivo SVG existe
-          if [ -f ./dist/github-snake.svg ]; then
-            sed -i 's/--cs:purple/--cs:#00ff5a/g' ./dist/github-snake.svg
-            sed -i 's/--c1:#01311f/--c1:#8348c9/g' ./dist/github-snake.svg
-            sed -i 's/--c2:#034525/--c2:#6d19b2/g' ./dist/github-snake.svg
-            sed -i 's/--c3:#0f6d31/--c3:#5a0980/g' ./dist/github-snake.svg
-            sed -i 's/--c4:#00c647/--c4:#35074d/g' ./dist/github-snake.svg
-          else
-            echo "O arquivo ./dist/github-snake.svg não foi encontrado!"
-            exit 1
-          fi
+          # Criar um diretório temporário
+          mkdir -p ./temp
+
+          # Copiar o SVG para o diretório temporário
+          cp ./dist/github-snake.svg ./temp/github-snake.svg
+
+          # Modificar as cores no SVG
+          sed -i 's/--cs:purple/--cs:#00ff5a/g' ./temp/github-snake.svg
+          sed -i 's/--c1:#01311f/--c1:#8348c9/g' ./temp/github-snake.svg
+          sed -i 's/--c2:#034525/--c2:#6d19b2/g' ./temp/github-snake.svg
+          sed -i 's/--c3:#0f6d31/--c3:#5a0980/g' ./temp/github-snake.svg
+          sed -i 's/--c4:#00c647/--c4:#35074d/g' ./temp/github-snake.svg
+
+          # Mover o arquivo modificado de volta para a pasta dist
+          mv ./temp/github-snake.svg ./dist/github-snake.svg
 
       # Passo 4: Fazer o deploy dos arquivos gerados na branch 'output'
       - name: Deploy to Output Branch
