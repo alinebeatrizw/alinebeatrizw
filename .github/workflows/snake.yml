@@ -33,16 +33,26 @@ jobs:
           # Define the output files and their configurations
           outputs: |
             dist/github-snake.svg
-            dist/github-snake-dark.svg?palette=github-dark  # Com a paleta específica para tema escuro
+            dist/github-snake-dark.svg
             dist/ocean.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 3: Deploy the generated files to the 'gh-pages' branch
+      # Step 3: Modify colors in the generated SVG
+      - name: Modify colors in SVG
+        run: |
+          # Substituir as cores no arquivo SVG gerado
+          sed -i 's/--cs:#00ff5a/--cs:#8348c9/g' ./dist/github-snake-dark.svg
+          sed -i 's/--c1:#01311f/--c1:#8348c9/g' ./dist/github-snake-dark.svg
+          sed -i 's/--c2:#034525/--c2:#6d19b2/g' ./dist/github-snake-dark.svg
+          sed -i 's/--c3:#0f6d31/--c3:#5a0980/g' ./dist/github-snake-dark.svg
+          sed -i 's/--c4:#00c647/--c4:#35074d/g' ./dist/github-snake-dark.svg
+
+      # Step 4: Deploy the generated files to the 'gh-pages' branch
       - name: Deploy to gh-pages Branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist  # Diretório onde os arquivos gerados são salvos
           publish_branch: gh-pages  # A branch para publicar
-          commit_message: "Update snake animation [skip ci]"
+          commit_message: "Update snake animation with custom colors [skip ci]"
