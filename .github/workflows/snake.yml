@@ -31,20 +31,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Passo 3: Substituir as cores no arquivo SVG gerado
-      - name: Replace colors in the SVG
+      - name: Install gsed
+        run: sudo apt-get install -y gsed
+        
+      - name: Replace colors in the SVG using gsed
         run: |
-          # Verifique se o arquivo SVG existe
-          if [ -f ./dist/github-snake.svg ]; then
-            chmod -R u+w ./dist
-            sed -i 's/--cs:purple/--cs:#00ff5a/g' ./dist/github-snake.svg
-            sed -i 's/--c1:#01311f/--c1:#8348c9/g' ./dist/github-snake.svg
-            sed -i 's/--c2:#034525/--c2:#6d19b2/g' ./dist/github-snake.svg
-            sed -i 's/--c3:#0f6d31/--c3:#5a0980/g' ./dist/github-snake.svg
-            sed -i 's/--c4:#00c647/--c4:#35074d/g' ./dist/github-snake.svg
-          else
-            echo "O arquivo ./dist/github-snake.svg não foi encontrado!"
-            exit 1
-          fi
+            gsed -i 's/--cs:purple/--cs:#00ff5a/g' ./dist/github-snake.svg
+            gsed -i 's/--c1:#01311f/--c1:#8348c9/g' ./dist/github-snake.svg
+            gsed -i 's/--c2:#034525/--c2:#6d19b2/g' ./dist/github-snake.svg
+            gsed -i 's/--c3:#0f6d31/--c3:#5a0980/g' ./dist/github-snake.svg
+            gsed -i 's/--c4:#00c647/--c4:#35074d/g' ./dist/github-snake.svg
+
 
       # Passo 4: Fazer o deploy dos arquivos gerados na branch 'output'
       - name: Deploy to Output Branch
