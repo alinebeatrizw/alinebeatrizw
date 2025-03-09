@@ -52,11 +52,11 @@ jobs:
           # Copiar o arquivo modificado para o diretório de saída
           cp ./temp/github-snake.svg ./output/github-snake.svg
 
-      # Passo 4: Fazer o deploy dos arquivos gerados na branch 'output'
-      - name: Deploy to Output Branch
+      # Passo 4: Fazer o deploy dos arquivos gerados na branch 'gh-pages'
+      - name: Deploy to gh-pages Branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output
-          publish_branch: output
+          publish_dir: ./output  # Publicar os arquivos modificados no diretório de saída
+          publish_branch: gh-pages  # A branch onde os arquivos serão hospedados
           commit_message: "Update snake animation [skip ci]"
