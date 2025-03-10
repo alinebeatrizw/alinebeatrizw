@@ -1,0 +1,28 @@
+name: Update SVG Colors
+
+on:
+  push:
+    branches:
+      - output
+
+permissions:
+  contents: write
+
+jobs:
+  update-svg:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Modify SVG color
+        run: |
+          sed -i 's/--cs:purple;/--cs:red;/g' github-snake-dark.svg
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add github-snake-dark.svg
+          git commit -m "Update SVG color from purple to red"
+          git push
