@@ -94,6 +94,7 @@ jobs:
 
       - name: Modify SVG color
         run: |
-          sed -i 's/purple/red/g' github-snake-dark.svg
+          sed -i 's/--cs:purple;/--cs:red;/g' dist/github-snake-dark.svg
+
 
           commit_message: "Update snake animation"
