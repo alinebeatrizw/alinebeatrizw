@@ -26,3 +26,4 @@ jobs:
           git add github-snake-dark.svg
           git commit -m "Update SVG color from purple to red"
           git push
+  
