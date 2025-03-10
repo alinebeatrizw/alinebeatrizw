@@ -17,7 +17,7 @@ jobs:
 
       - name: Modify SVG color
         run: |
-          sed -i 's/--cs:purple;/--cs:red;/g' github-snake-dark.svg
+          sed -i 's/purple/red/g' github-snake-dark.svg
 
       - name: Commit and push changes
         run: |
