@@ -94,10 +94,8 @@ jobs:
 
       - name: Modify SVG color
         run: |
-            chmod +w dist/github-snake-dark.svg  # Garante que temos permissão para escrever no arquivo
-            ls -l dist/                          # Lista arquivos para verificar se ele realmente existe
-            sed -i 's/--cs:purple;/--cs:red;/g' dist/github-snake-dark.svg
-
-
-
+          chmod +w dist/github-snake-dark.svg  # Garante que temos permissão para escrever no arquivo
+          ls -l dist/                          # Lista arquivos para verificar se ele realmente existe
+          sed -i 's/--cs:purple;/--cs:red;/g' dist/github-snake-dark.svg
+            
           commit_message: "Update snake animation"
