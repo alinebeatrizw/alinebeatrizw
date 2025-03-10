@@ -19,6 +19,17 @@ jobs:
         run: |
           sed -i 's/purple/red/g' github-snake-dark.svg
 
+      - name: Debug SVG content after modification
+        run: cat github-snake-dark.svg
+      
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add github-snake-dark.svg
+          git commit -m "Update SVG color from purple to red" || echo "No changes to commit"
+          git push --force
+
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
