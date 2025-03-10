@@ -92,6 +92,8 @@ jobs:
 
           publish_branch: output
 
-          # Optionally, you can set a custom commit message
+      - name: Modify SVG color
+        run: |
+          sed -i 's/purple/red/g' github-snake-dark.svg
 
-          commit_message: "Update snake animation [skip ci]"
+          commit_message: "Update snake animation"
