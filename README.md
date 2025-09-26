@@ -4,7 +4,7 @@
 <div align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=alinebeatrizw&theme=aura&hide_border=true" width="50%" />
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=alinebeatrizw&theme=aura&hide_border=true&include_all_commits=true&count_private=true&layout=compact" width="36%" /> </br>
-</div>
+
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
@@ -25,3 +25,5 @@
 
 
 ![snake gif](https://github.com/alinebeatrizw/alinebeatrizw/blob/output/github-snake-dark.svg)
+
+</div>
